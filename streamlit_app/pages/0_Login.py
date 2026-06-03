@@ -35,7 +35,7 @@ if st.session_state.get("logged_in", False):
         "Go To Dashboard",
         use_container_width=True
     ):
-        st.switch_page("pages/1_Dashboard.py")
+        st.switch_page("app.py")
 
     st.stop()
 

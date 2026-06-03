@@ -53,4 +53,5 @@ def google_login():
             st.session_state.user_name = user_info.get("name", "User")
             st.session_state.user_email = user_info.get("email", "")
 
+            st.session_state.logged_in = True
             st.rerun()
