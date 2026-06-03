@@ -10,13 +10,8 @@ st.info(
     "Evaluate overall customer engagement and health using activity metrics."
 )
 
-if not st.session_state.get(
-    "authenticated",
-    False
-):
-    st.switch_page(
-        "pages/0_Login.py"
-    )
+if not st.session_state.get("logged_in", False):
+    st.switch_page("pages/0_Login.py")
     st.stop()
 
 usage_hours = st.number_input(

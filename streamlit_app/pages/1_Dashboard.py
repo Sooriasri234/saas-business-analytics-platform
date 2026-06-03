@@ -7,14 +7,10 @@ load_theme()
 
 st.title("📈 Executive Dashboard")
 
-if not st.session_state.get(
-    "authenticated",
-    False
-):
-    st.switch_page(
-        "pages/0_Login.py"
-    )
+if not st.session_state.get("logged_in", False):
+    st.switch_page("pages/0_Login.py")
     st.stop()
+    
 
 col1, col2, col3, col4 = st.columns(4)
 

@@ -9,13 +9,8 @@ load_theme()
 
 st.title("📊 Business_Insights")
 
-if not st.session_state.get(
-    "authenticated",
-    False
-):
-    st.switch_page(
-        "pages/0_Login.py"
-    )
+if not st.session_state.get("logged_in", False):
+    st.switch_page("pages/0_Login.py")
     st.stop()
 
 st.markdown("""
