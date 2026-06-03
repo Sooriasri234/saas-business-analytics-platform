@@ -14,8 +14,6 @@ st.title("📈 Executive Dashboard")
 
 # Load dataset
 df = st.session_state.get("data")
-st.write("Dataset Columns:")
-st.write(df.columns.tolist())
 
 if df is None:
     st.error("No dataset loaded.")
@@ -25,24 +23,28 @@ if df is None:
 # KPI CALCULATIONS
 # -------------------------------
 
+# Total Customers
 total_customers = len(df)
 
+# Churn Rate
 churn_rate = 0
 
 if "churn" in df.columns:
-    churn_rate = round(
-        (df["churn"].sum() / len(df)) * 100,
-        2
-    )
+    churn_rate = round(df["churn"].mean() * 100, 2)
 
+elif "Churned" in df.columns:
+    churn_rate = round(df["Churned"].mean() * 100, 2)
+
+# Revenue
 monthly_revenue = 0
 
 if "monthly_fee" in df.columns:
-    monthly_revenue = round(
-        df["monthly_fee"].sum(),
-        2
-    )
+    monthly_revenue = round(df["monthly_fee"].sum(), 2)
 
+elif "Lifetime_Value" in df.columns:
+    monthly_revenue = round(df["Lifetime_Value"].sum(), 2)
+
+# Health Score
 health_score = 0
 
 if (
@@ -61,6 +63,19 @@ if (
         2
     )
 
+elif (
+    "Login_Frequency" in df.columns
+    and "Email_Open_Rate" in df.columns
+):
+
+    health_score = round(
+        (
+            df["Login_Frequency"].mean()
+            +
+            df["Email_Open_Rate"].mean()
+        ) / 2,
+        2
+    )
 # -------------------------------
 # KPI CARDS
 # -------------------------------
