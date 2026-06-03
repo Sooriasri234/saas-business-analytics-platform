@@ -117,3 +117,42 @@ if st.button(
             "Tenure Months": tenure_months,
             "Last Login Days": last_login_days
         })
+
+st.markdown("---")
+st.subheader("📊 Dataset Churn Analysis")
+
+df = st.session_state.get("data")
+
+if df is not None:
+
+    if "Churned" in df.columns:
+
+        churn_rate = round(
+            df["Churned"].mean() * 100,
+            2
+        )
+
+        st.metric(
+            "Dataset Churn Rate",
+            f"{churn_rate}%"
+        )
+
+        if churn_rate > 40:
+
+            st.error("""
+High churn detected.
+
+Recommendation:
+Offer retention campaigns,
+discounts and loyalty programs.
+""")
+
+        else:
+
+            st.success("""
+Churn levels are acceptable.
+
+Recommendation:
+Focus on customer acquisition
+and upselling.
+""")

@@ -71,3 +71,44 @@ if st.button(
 
     else:
         st.error("🔴 High Risk Customer")
+
+# --st.markdown("---")
+st.subheader("📊 Dataset Health Analysis")
+
+df = st.session_state.get("data")
+
+if df is not None:
+
+    st.write("Dataset Loaded Successfully")
+
+    if (
+        "Login_Frequency" in df.columns
+        and "Email_Open_Rate" in df.columns
+    ):
+
+        avg_health = round(
+            (
+                df["Login_Frequency"].mean()
+                +
+                df["Email_Open_Rate"].mean()
+            ) / 2,
+            2
+        )
+
+        st.metric(
+            "Average Dataset Health Score",
+            avg_health
+        )
+
+        if avg_health >= 70:
+            st.success(
+                "Dataset indicates healthy customers."
+            )
+        elif avg_health >= 50:
+            st.warning(
+                "Dataset indicates moderate-risk customers."
+            )
+        else:
+            st.error(
+                "Dataset indicates high-risk customers."
+            )
