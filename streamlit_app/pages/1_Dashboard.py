@@ -27,17 +27,52 @@ if df is None:
 total_customers = len(df)
 
 # Churn Rate
+
 churn_rate = 0
 
 if "churn" in df.columns:
-    churn_rate = round(df["churn"].mean() * 100, 2)
+
+    churn_series = pd.to_numeric(
+        df["churn"],
+        errors="coerce"
+    )
+
+    churn_rate = round(
+        churn_series.mean() * 100,
+        2
+    )
 
 elif "Churned" in df.columns:
-    churn_rate = round(df["Churned"].mean() * 100, 2)
 
-st.write(df.columns.tolist())
-st.write(df["Churned"].head())
+    if df["Churned"].dtype == "object":
 
+        churn_rate = round(
+            df["Churned"]
+            .astype(str)
+            .str.lower()
+            .isin(
+                [
+                    "yes",
+                    "true",
+                    "1",
+                    "churned"
+                ]
+            )
+            .mean()
+            * 100,
+            2
+        )
+
+    else:
+
+        churn_rate = round(
+            pd.to_numeric(
+                df["Churned"],
+                errors="coerce"
+            ).mean()
+            * 100,
+            2
+        )
 # Revenue
 monthly_revenue = 0
 
