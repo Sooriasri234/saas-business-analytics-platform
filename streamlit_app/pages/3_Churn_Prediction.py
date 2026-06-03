@@ -1,11 +1,13 @@
 import streamlit as st
 import joblib
 import numpy as np
+from navbar import show_navbar
 from theme import load_theme
 
 st.set_page_config(layout="wide")
 
 load_theme()
+show_navbar()
 
 st.title("🤖 Churn Prediction")
 st.info(

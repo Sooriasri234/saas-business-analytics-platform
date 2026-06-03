@@ -1,10 +1,12 @@
 import streamlit as st
 import pandas as pd
+from navbar import show_navbar
 from theme import load_theme
 
 st.set_page_config(layout="wide")
 
 load_theme()
+show_navbar()
 
 st.title(" AI Business Recommendations")
 

@@ -2,11 +2,13 @@ import streamlit as st
 import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
+from navbar import show_navbar
 from theme import load_theme
 
 st.set_page_config(layout="wide")
 
 load_theme()
+show_navbar()
 
 st.title("📧 Email Reports")
 
