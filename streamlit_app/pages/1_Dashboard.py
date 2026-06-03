@@ -1,42 +1,121 @@
 import streamlit as st
+import pandas as pd
 from theme import load_theme
 
 st.set_page_config(layout="wide")
 
 load_theme()
 
-st.title("📈 Executive Dashboard")
-
 if not st.session_state.get("logged_in", False):
     st.switch_page("pages/0_Login.py")
     st.stop()
-    
+
+st.title("📈 Executive Dashboard")
+
+# Load dataset
+df = st.session_state.get("data")
+
+if df is None:
+    st.error("No dataset loaded.")
+    st.stop()
+
+# -------------------------------
+# KPI CALCULATIONS
+# -------------------------------
+
+total_customers = len(df)
+
+churn_rate = 0
+
+if "churn" in df.columns:
+    churn_rate = round(
+        (df["churn"].sum() / len(df)) * 100,
+        2
+    )
+
+monthly_revenue = 0
+
+if "monthly_fee" in df.columns:
+    monthly_revenue = round(
+        df["monthly_fee"].sum(),
+        2
+    )
+
+health_score = 0
+
+if (
+    "avg_weekly_usage_hours" in df.columns
+    and "payment_failures" in df.columns
+):
+
+    health_score = round(
+        (
+            df["avg_weekly_usage_hours"].mean() * 5
+        )
+        -
+        (
+            df["payment_failures"].mean() * 10
+        ),
+        2
+    )
+
+# -------------------------------
+# KPI CARDS
+# -------------------------------
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.metric("Total Customers", "2800")
+    st.metric(
+        "Total Customers",
+        total_customers
+    )
 
 with col2:
-    st.metric("Churn Rate", "57.32%")
+    st.metric(
+        "Churn Rate",
+        f"{churn_rate}%"
+    )
 
 with col3:
-    st.metric("Monthly Revenue", "₹12.16 Lakh")
+    st.metric(
+        "Revenue",
+        f"₹{monthly_revenue:,.0f}"
+    )
 
 with col4:
-    st.metric("Avg Health Score", "73.48")
+    st.metric(
+        "Health Score",
+        health_score
+    )
 
-st.markdown("---")
+st.divider()
+
+# -------------------------------
+# DATASET PREVIEW
+# -------------------------------
+
+st.subheader("Dataset Preview")
+
+st.dataframe(
+    df.head(),
+    use_container_width=True
+)
+
+st.divider()
+
+# -------------------------------
+# BUSINESS SUMMARY
+# -------------------------------
 
 st.subheader("Business Summary")
 
-st.success("""
-The SaaS platform currently has 2800 customers generating
-₹12.16 lakh monthly revenue.
+st.success(f"""
+Dataset contains {total_customers} records.
 
-The churn rate is 57.32%, indicating customer retention
-needs improvement.
+Current churn rate is {churn_rate}%.
 
-Average customer health score is 73.48, placing most
-customers in the Moderate Risk category.
+Estimated revenue is ₹{monthly_revenue:,.0f}.
+
+Average customer health score is {health_score}.
 """)
