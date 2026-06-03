@@ -7,44 +7,115 @@ st.set_page_config(
     layout="centered"
 )
 
-# Initialize login state
+# -----------------------------------
+# SESSION STATE
+# -----------------------------------
+
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-st.title("🔐 SaaS Analytics Platform")
+# -----------------------------------
+# IF ALREADY LOGGED IN
+# -----------------------------------
 
-st.markdown("### Welcome")
-
-st.info(
-    "Please login with your Google account to access the dashboard."
-)
-
-# If already logged in
 if st.session_state.get("logged_in", False):
 
     st.success(
-        f"✅ Logged in as {st.session_state.get('user_name', 'User')}"
+        f"Logged in as {st.session_state.get('user_name', 'User')}"
     )
 
     st.write(
-        f"📧 {st.session_state.get('user_email', '')}"
+        st.session_state.get(
+            "user_email",
+            ""
+        )
     )
 
     if st.button(
-        "🚀 Go To Dashboard",
+        "Go To Dashboard",
         use_container_width=True
     ):
-        st.switch_page("app.py")
+        st.switch_page("pages/1_Dashboard.py")
 
-# Show Google Login Button
-else:
+    st.stop()
 
-    st.markdown("### Sign In")
+# -----------------------------------
+# CUSTOM STYLE
+# -----------------------------------
 
-    google_login()
+st.markdown("""
+<style>
 
-    st.markdown("---")
+.login-title {
+    text-align: center;
+}
 
-    st.caption(
-        "Secure login powered by Google OAuth 2.0"
-    )
+.login-subtitle {
+    text-align: center;
+    color: gray;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# -----------------------------------
+# HEADER
+# -----------------------------------
+
+st.markdown(
+    "<h1 class='login-title'>SaaS Business Analytics Platform</h1>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p class='login-subtitle'>Business Intelligence • Churn Prediction • Customer Analytics</p>",
+    unsafe_allow_html=True
+)
+
+st.markdown("---")
+
+# -----------------------------------
+# EMAIL / PASSWORD UI
+# -----------------------------------
+
+st.subheader("Login")
+
+email = st.text_input(
+    "Email Address"
+)
+
+password = st.text_input(
+    "Password",
+    type="password"
+)
+
+if st.button(
+    "Login",
+    use_container_width=True
+):
+
+    if email and password:
+
+        st.info(
+            "Demo Login Enabled. Use Google Sign-In for secure authentication."
+        )
+
+    else:
+
+        st.warning(
+            "Please enter email and password."
+        )
+
+st.markdown("### Or Continue With Google")
+
+# -----------------------------------
+# GOOGLE OAUTH
+# -----------------------------------
+
+google_login()
+
+st.markdown("---")
+
+st.caption(
+    "Secure authentication powered by Google OAuth 2.0"
+)
