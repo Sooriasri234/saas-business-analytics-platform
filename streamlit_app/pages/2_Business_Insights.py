@@ -7,41 +7,59 @@ st.set_page_config(layout="wide")
 
 load_theme()
 
-st.title("📊 Business_Insights")
-
 if not st.session_state.get("logged_in", False):
     st.switch_page("pages/0_Login.py")
     st.stop()
 
-st.markdown("""
-Explore customer behavior, subscription trends,
-and business performance insights.
-""")
+st.title("📊 Business Insights")
 
-plan_data = pd.DataFrame({
-    "Plan": ["Premium", "Standard", "Basic"],
-    "Customers": [944, 933, 923]
-})
+# Get dataset
+df = st.session_state.get("data")
 
-fig = px.pie(
-    plan_data,
-    names="Plan",
-    values="Customers",
-    title="Plan Distribution"
-)
+if df is None:
+    st.error("No dataset loaded.")
+    st.stop()
 
-st.plotly_chart(fig, use_container_width=True)
+st.subheader("Dataset Overview")
 
-risk_data = pd.DataFrame({
-    "Risk": ["Healthy", "Moderate Risk", "High Risk"],
-    "Count": [995, 1256, 549]
-})
+st.write(f"Rows: {df.shape[0]}")
+st.write(f"Columns: {df.shape[1]}")
 
-fig2 = px.bar(
-    risk_data,
-    x="Risk",
-    y="Count",
-    title="Customer Risk Categories"
-)
+st.dataframe(df.head())
 
-st.plotly_chart(fig2, use_container_width=True)
+# Numerical Columns
+numeric_cols = df.select_dtypes(include="number").columns
+
+if len(numeric_cols) > 0:
+
+    selected_col = st.selectbox(
+        "Select Column for Analysis",
+        numeric_cols
+    )
+
+    fig = px.histogram(
+        df,
+        x=selected_col,
+        title=f"{selected_col} Distribution"
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+    fig2 = px.box(
+        df,
+        y=selected_col,
+        title=f"{selected_col} Box Plot"
+    )
+
+    st.plotly_chart(
+        fig2,
+        use_container_width=True
+    )
+
+else:
+    st.warning(
+        "No numerical columns found."
+    )
