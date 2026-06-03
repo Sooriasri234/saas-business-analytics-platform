@@ -69,10 +69,6 @@ col1, col2 = st.columns([8,1])
 with col1:
     st.title("📊 SaaS Business Analytics & Prediction Platform")
 
-with col2:
-    if st.button("Logout"):
-        st.session_state.logged_in = False
-        st.switch_page("pages/0_Login.py")
 
 # ---------------------------------------------------
 # DATASET SELECTION
@@ -121,40 +117,6 @@ Analyze:
 
 Choose the default dataset or upload your own CSV for analysis.
 """)
-
-st.divider()
-
-# ---------------------------------------------------
-# TOP NAVIGATION
-# ---------------------------------------------------
-
-st.divider()
-
-nav1, nav2, nav3, nav4, nav5, nav6 = st.columns(6)
-
-with nav1:
-    if st.button("Dashboard", use_container_width=True):
-        st.switch_page("pages/1_Dashboard.py")
-
-with nav2:
-    if st.button("Business Insights", use_container_width=True):
-        st.switch_page("pages/2_Business_Insights.py")
-
-with nav3:
-    if st.button("Churn Prediction", use_container_width=True):
-        st.switch_page("pages/3_Churn_Prediction.py")
-
-with nav4:
-    if st.button("Customer Health", use_container_width=True):
-        st.switch_page("pages/4_Customer_Health.py")
-
-with nav5:
-    if st.button("AI Recommendations", use_container_width=True):
-        st.switch_page("pages/5_AI_Recommendations.py")
-
-with nav6:
-    if st.button("Email Reports", use_container_width=True):
-        st.switch_page("pages/6_Email_Reports.py")
 
 st.divider()
 
