@@ -1,6 +1,20 @@
 import streamlit as st
+from theme import load_theme
+
+st.set_page_config(layout="wide")
+
+load_theme()
 
 st.title("📈 Executive Dashboard")
+
+if not st.session_state.get(
+    "authenticated",
+    False
+):
+    st.switch_page(
+        "pages/0_Login.py"
+    )
+    st.stop()
 
 col1, col2, col3, col4 = st.columns(4)
 

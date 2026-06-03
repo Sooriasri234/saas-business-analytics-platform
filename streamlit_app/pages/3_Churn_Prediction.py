@@ -1,8 +1,25 @@
 import streamlit as st
 import joblib
 import numpy as np
+from theme import load_theme
+
+st.set_page_config(layout="wide")
+
+load_theme()
 
 st.title("🤖 Churn Prediction")
+st.info(
+    "Enter customer details below to predict the likelihood of churn."
+)
+
+if not st.session_state.get(
+    "authenticated",
+    False
+):
+    st.switch_page(
+        "pages/0_Login.py"
+    )
+    st.stop()
 
 # Load trained model
 model = joblib.load("models/churn_model.pkl")
@@ -49,8 +66,12 @@ last_login_days = st.number_input(
     value=5
 )
 
-if st.button("Predict Churn"):
+st.markdown("---")
 
+if st.button(
+    "🚀 Predict Churn",
+    use_container_width=True
+):
     # Encoding used during training
     plan_mapping = {
         "Basic": 0,

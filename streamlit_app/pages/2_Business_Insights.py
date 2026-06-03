@@ -1,8 +1,22 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from theme import load_theme
+
+st.set_page_config(layout="wide")
+
+load_theme()
 
 st.title("📊 Business_Insights")
+
+if not st.session_state.get(
+    "authenticated",
+    False
+):
+    st.switch_page(
+        "pages/0_Login.py"
+    )
+    st.stop()
 
 st.markdown("""
 Explore customer behavior, subscription trends,

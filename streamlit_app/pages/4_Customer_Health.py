@@ -1,6 +1,23 @@
 import streamlit as st
+from theme import load_theme
+
+st.set_page_config(layout="wide")
+
+load_theme()
 
 st.title("💚 Customer Health Score")
+st.info(
+    "Evaluate overall customer engagement and health using activity metrics."
+)
+
+if not st.session_state.get(
+    "authenticated",
+    False
+):
+    st.switch_page(
+        "pages/0_Login.py"
+    )
+    st.stop()
 
 usage_hours = st.number_input(
     "Average Weekly Usage Hours",
@@ -26,7 +43,12 @@ last_login_days = st.number_input(
     value=5
 )
 
-if st.button("Calculate Health Score"):
+st.markdown("---")
+
+if st.button(
+    "❤️ Calculate Health Score",
+    use_container_width=True
+):
 
     score = 100
 

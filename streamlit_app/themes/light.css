@@ -1,0 +1,98 @@
+/* Main Page */
+
+.stApp {
+    background-color: white;
+    color: black;
+}
+
+/* Sidebar */
+
+section[data-testid="stSidebar"] {
+    background-color: #F5F5F5;
+}
+
+section[data-testid="stSidebar"] * {
+    color: black !important;
+}
+
+/* Metric Cards */
+
+div[data-testid="stMetric"] {
+    background-color: #F8F9FA;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #D3D3D3;
+    text-align: center;
+}
+
+div[data-testid="stMetric"] label {
+    color: #0D6EFD !important;
+    font-weight: bold;
+}
+
+div[data-testid="stMetric"] div {
+    color: black !important;
+}
+
+/* Buttons */
+
+.stButton > button {
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #0D6EFD;
+    color: white !important;
+    border: none;
+}
+
+.stButton > button:hover {
+    background-color: #0B5ED7;
+    color: white !important;
+}
+
+/* Inputs */
+
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox div,
+textarea {
+    color: black !important;
+}
+
+/* Labels */
+
+label {
+    color: black !important;
+    font-weight: 600 !important;
+}
+
+/* Input Fields */
+
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea {
+    background-color: white !important;
+    color: black !important;
+}
+
+/* Selectbox */
+
+div[data-baseweb="select"] > div {
+    background-color: white !important;
+    color: black !important;
+}
+
+/* Number Input Box */
+
+div[data-baseweb="input"] > div {
+    background-color: white !important;
+}
+
+/* Placeholder Text */
+
+input::placeholder,
+textarea::placeholder {
+    color: #666666 !important;
+}

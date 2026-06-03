@@ -1,0 +1,36 @@
+.stApp {
+    background-color: #0E1117;
+    color: white;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #161B22;
+}
+
+div[data-testid="stMetric"] {
+    background-color: #1C2128;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #30363D;
+    text-align: center;
+}
+
+div[data-testid="stMetric"] label {
+    color: #58A6FF !important;
+    font-weight: bold;
+}
+
+div[data-testid="stMetric"] div {
+    color: white !important;
+}
+
+.stButton > button {
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 12px;
+    background-color: #238636;
+    color: white !important;
+    border: none;
+}
