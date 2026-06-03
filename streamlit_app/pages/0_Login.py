@@ -1,5 +1,6 @@
 import streamlit as st
 from auth import google_login
+from theme import load_theme
 
 st.set_page_config(
     page_title="Login",
@@ -13,6 +14,55 @@ st.set_page_config(
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = False
+
+# -----------------------------------
+# HIDE SIDEBAR
+# -----------------------------------
+
+st.markdown("""
+<style>
+
+[data-testid="stSidebar"] {
+    display: none;
+}
+
+[data-testid="collapsedControl"] {
+    display: none;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: gray;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# -----------------------------------
+# TOP BAR
+# -----------------------------------
+
+top1, top2 = st.columns([8, 1])
+
+with top2:
+
+    st.session_state.dark_mode = st.toggle(
+        "🌙",
+        value=st.session_state.dark_mode
+    )
+
+# -----------------------------------
+# LOAD THEME
+# -----------------------------------
+
+load_theme()
 
 # -----------------------------------
 # IF ALREADY LOGGED IN
@@ -38,25 +88,6 @@ if st.session_state.get("logged_in", False):
         st.switch_page("app.py")
 
     st.stop()
-
-# -----------------------------------
-# CUSTOM STYLE
-# -----------------------------------
-
-st.markdown("""
-<style>
-
-.login-title {
-    text-align: center;
-}
-
-.login-subtitle {
-    text-align: center;
-    color: gray;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # -----------------------------------
 # HEADER

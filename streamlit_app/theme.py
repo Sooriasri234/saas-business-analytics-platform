@@ -7,16 +7,6 @@ def load_theme():
     if "dark_mode" not in st.session_state:
         st.session_state.dark_mode = False
 
-    # Sidebar
-    with st.sidebar:
-
-        st.header("⚙️ Settings")
-
-        # Theme Toggle
-        st.session_state.dark_mode = st.toggle(
-            "🌙 Dark Mode",
-            value=st.session_state.dark_mode
-        )
 
         st.markdown("---")
 
