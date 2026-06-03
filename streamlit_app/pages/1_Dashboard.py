@@ -35,6 +35,9 @@ if "churn" in df.columns:
 elif "Churned" in df.columns:
     churn_rate = round(df["Churned"].mean() * 100, 2)
 
+st.write(df.columns.tolist())
+st.write(df["Churned"].head())
+
 # Revenue
 monthly_revenue = 0
 
