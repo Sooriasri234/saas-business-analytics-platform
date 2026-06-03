@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
+from navbar import show_navbar
 from theme import load_theme
 
 if not st.session_state.get("logged_in", False):
@@ -17,6 +18,7 @@ st.set_page_config(
 )
 
 load_theme()
+show_navbar()
 
 st.markdown("""
 <style>
