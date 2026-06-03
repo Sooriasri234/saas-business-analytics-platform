@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from theme import load_theme
 
 st.set_page_config(layout="wide")
@@ -26,22 +27,45 @@ st.subheader("Business Intelligence Recommendations")
 churn_rate = 0
 
 if "Churned" in df.columns:
-    churn_rate = round(
-        df["Churned"].mean() * 100,
-        2
-    )
+
+    if df["Churned"].dtype == "object":
+
+        churn_rate = round(
+            df["Churned"]
+            .astype(str)
+            .str.lower()
+            .isin([
+                "yes",
+                "true",
+                "1",
+                "churned"
+            ])
+            .mean()
+            * 100,
+            2
+        )
+
+    else:
+
+        churn_rate = round(
+            pd.to_numeric(
+                df["Churned"],
+                errors="coerce"
+            ).mean()
+            * 100,
+            2
+        )
 
 elif "churn" in df.columns:
+
     churn_rate = round(
-        df["churn"].mean() * 100,
+        pd.to_numeric(
+            df["churn"],
+            errors="coerce"
+        ).mean()
+        * 100,
         2
     )
-
-st.metric(
-    "Current Churn Rate",
-    f"{churn_rate}%"
-)
-
 # --------------------------
 # RECOMMENDATIONS
 # --------------------------
