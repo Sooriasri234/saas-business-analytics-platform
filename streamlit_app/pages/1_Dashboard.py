@@ -14,6 +14,8 @@ st.title("📈 Executive Dashboard")
 
 # Load dataset
 df = st.session_state.get("data")
+st.write("Dataset Columns:")
+st.write(df.columns.tolist())
 
 if df is None:
     st.error("No dataset loaded.")
