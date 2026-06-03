@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from pathlib import Path
 from theme import load_theme
 
@@ -50,6 +51,36 @@ if css_file.exists():
 
 st.title("📊 SaaS Business Analytics & Prediction Platform")
 
+# ---------------------------------------------------
+# DATASET SELECTION
+# ---------------------------------------------------
+
+st.subheader("📁 Dataset Selection")
+
+uploaded_file = st.file_uploader(
+    "Upload CSV Dataset",
+    type=["csv"]
+)
+
+if uploaded_file is not None:
+
+    df = pd.read_csv(uploaded_file)
+
+    st.success("✅ Custom Dataset Loaded")
+
+else:
+
+    df = pd.read_csv(
+        "data/raw/customer_subscription_churn_usage_patterns.csv"
+    )
+
+    st.info("📊 Using Default SaaS Dataset")
+
+st.session_state["data"] = df
+
+with st.expander("Preview Dataset"):
+    st.dataframe(df.head())
+
 st.markdown("""
 ### Welcome to the Analytics Dashboard
 
@@ -65,7 +96,7 @@ Analyze:
 
 ✅ Customer Health Score
 
-Use the sidebar to navigate through the platform.
+Choose the default dataset or upload your own CSV for analysis.
 """)
 
 st.divider()
