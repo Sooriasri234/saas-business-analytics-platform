@@ -55,6 +55,7 @@ with top1:
     st.empty()  # keeps alignment clean
 
 with top2:
+    st.markdown("**Theme**")
     st.session_state.dark_mode = st.toggle(
         "Theme",
         value=st.session_state.dark_mode

@@ -137,7 +137,7 @@ with col1:
         border-radius:12px;
         text-align:center;
     ">
-        <h4>👥 Customers</h4>
+        <h4>Customers</h4>
         <h2>2800</h2>
     </div>
     """, unsafe_allow_html=True)
