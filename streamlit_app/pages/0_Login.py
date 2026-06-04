@@ -56,7 +56,7 @@ with top1:
 
 with top2:
     st.session_state.dark_mode = st.toggle(
-        "Dark Mode",
+        "Theme",
         value=st.session_state.dark_mode
     )
 
