@@ -9,7 +9,7 @@ st.set_page_config(layout="wide")
 load_theme()
 show_navbar()
 
-st.title("🤖 Churn Prediction")
+st.title("Churn Prediction")
 st.info(
     "Enter customer details below to predict the likelihood of churn."
 )
@@ -66,7 +66,7 @@ last_login_days = st.number_input(
 st.markdown("---")
 
 if st.button(
-    "🚀 Predict Churn",
+    "Predict Churn",
     use_container_width=True
 ):
     # Encoding used during training
@@ -96,9 +96,9 @@ if st.button(
     st.subheader("Prediction Result")
 
     if prediction == 1:
-        st.error("⚠️ Customer Likely to Churn")
+        st.error("Customer Likely to Churn")
     else:
-        st.success("✅ Customer Likely to Stay")
+        st.success("Customer Likely to Stay")
 
     st.metric(
         "Churn Probability",
@@ -121,7 +121,7 @@ if st.button(
         })
 
 st.markdown("---")
-st.subheader("📊 Dataset Churn Analysis")
+st.subheader("Dataset Churn Analysis")
 
 df = st.session_state.get("data")
 
@@ -158,3 +158,4 @@ Recommendation:
 Focus on customer acquisition
 and upselling.
 """)
+            

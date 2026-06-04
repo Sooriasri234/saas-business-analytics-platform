@@ -13,7 +13,7 @@ if not st.session_state.get("logged_in", False):
     st.switch_page("pages/0_Login.py")
     st.stop()
 
-st.title("📊 Business Insights")
+st.title("Business Insights")
 
 # Get dataset
 df = st.session_state.get("data")

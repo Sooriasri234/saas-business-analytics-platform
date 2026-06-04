@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 load_theme()
 show_navbar()
 
-st.title("📧 Email Reports")
+st.title("Email Reports")
 
 if not st.session_state.get("logged_in", False):
     st.switch_page("pages/0_Login.py")
@@ -21,7 +21,7 @@ recipient = st.text_input(
 )
 
 if st.button(
-    "📤 Send Business Report",
+    "Send Business Report",
     use_container_width=True
 ):
 

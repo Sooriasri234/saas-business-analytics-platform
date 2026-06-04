@@ -12,7 +12,7 @@ if not st.session_state.get("logged_in", False):
     st.switch_page("pages/0_Login.py")
     st.stop()
 
-st.title("📈 Executive Dashboard")
+st.title("Executive Dashboard")
 
 # Load dataset
 df = st.session_state.get("data")

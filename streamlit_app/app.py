@@ -13,7 +13,6 @@ if not st.session_state.get("logged_in", False):
 
 st.set_page_config(
     page_title="SaaS Business Analytics Platform",
-    page_icon="📊",
     layout="wide"
 )
 
@@ -67,14 +66,14 @@ if css_file.exists():
 col1, col2 = st.columns([8,1])
 
 with col1:
-    st.title("📊 SaaS Business Analytics & Prediction Platform")
+    st.title("SaaS Business Analytics & Prediction Platform")
 
 
 # ---------------------------------------------------
 # DATASET SELECTION
 # ---------------------------------------------------
 
-st.subheader("📁 Dataset Selection")
+st.subheader("Dataset Selection")
 
 uploaded_file = st.file_uploader(
     "Upload CSV Dataset",
@@ -85,7 +84,7 @@ if uploaded_file is not None:
 
     df = pd.read_csv(uploaded_file)
 
-    st.success("✅ Custom Dataset Loaded")
+    st.success("Custom Dataset Loaded")
 
 else:
 
@@ -93,7 +92,7 @@ else:
         "data/raw/customer_subscription_churn_usage_patterns.csv"
     )
 
-    st.info("📊 Using Default SaaS Dataset")
+    st.info("Using Default SaaS Dataset")
 
 st.session_state["data"] = df
 
@@ -105,15 +104,15 @@ st.markdown("""
 
 Analyze:
 
-✅ Customer Growth
+ 1. Customer Growth
 
-✅ Revenue Performance
+ 2. Revenue Performance
 
-✅ Subscription Trends
+ 3. Subscription Trends
 
-✅ Churn Prediction
+ 4. Churn Prediction
 
-✅ Customer Health Score
+ 5. Customer Health Score
 
 Choose the default dataset or upload your own CSV for analysis.
 """)
@@ -124,7 +123,7 @@ st.divider()
 # KPI CARDS
 # ---------------------------------------------------
 
-st.subheader("📈 Key Performance Indicators")
+st.subheader("Key Performance Indicators")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -153,7 +152,7 @@ with col2:
         border-radius:12px;
         text-align:center;
     ">
-        <h4>⚠️ Churn Rate</h4>
+        <h4>Churn Rate</h4>
         <h2>57.32%</h2>
     </div>
     """, unsafe_allow_html=True)
@@ -168,7 +167,7 @@ with col3:
         border-radius:12px;
         text-align:center;
     ">
-        <h4>💰 Monthly Revenue</h4>
+        <h4>Monthly Revenue</h4>
         <h2>₹12.16L</h2>
     </div>
     """, unsafe_allow_html=True)
@@ -183,7 +182,7 @@ with col4:
         border-radius:12px;
         text-align:center;
     ">
-        <h4>❤️ Health Score</h4>
+        <h4>Health Score</h4>
         <h2>73.48</h2>
     </div>
     """, unsafe_allow_html=True)
@@ -194,13 +193,13 @@ st.divider()
 # PLATFORM FEATURES
 # ---------------------------------------------------
 
-st.subheader("🚀 Platform Features")
+st.subheader("Platform Features")
 
 feature1, feature2, feature3 = st.columns(3)
 
 with feature1:
     st.info("""
-### 📊 Analytics
+###  Analytics
 
 - Customer Growth
 - Revenue Analysis
@@ -210,7 +209,7 @@ with feature1:
 
 with feature2:
     st.info("""
-### 🤖 AI Predictions
+### AI Predictions
 
 - Churn Prediction
 - Customer Risk Detection
@@ -220,7 +219,7 @@ with feature2:
 
 with feature3:
     st.info("""
-### 🗄️ Data Management
+###  Data Management
 
 - PostgreSQL Database
 - SQL Analytics
@@ -234,7 +233,7 @@ st.divider()
 # ABOUT PROJECT
 # ---------------------------------------------------
 
-st.subheader("🎯 About This Project")
+st.subheader("About This Project")
 
 st.success("""
 This SaaS Business Analytics Platform helps management teams make
@@ -256,5 +255,6 @@ Built using Python, PostgreSQL, Machine Learning, and Streamlit.
 """)
 
 st.info(
-    "👈 Use the sidebar to explore all pages and analytics modules."
+    "Navigate through the platform using the top menu to access dashboards, insights, predictions, and reports."
 )
+

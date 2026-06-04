@@ -74,7 +74,7 @@ elif "churn" in df.columns:
 
 if churn_rate > 40:
 
-    st.error("⚠️ High Churn Risk Detected")
+    st.error("High Churn Risk Detected")
 
     st.markdown("""
 ### Recommended Actions
@@ -92,7 +92,7 @@ if churn_rate > 40:
 
 else:
 
-    st.success("✅ Customer Retention Healthy")
+    st.success("Customer Retention Healthy")
 
     st.markdown("""
 ### Growth Recommendations

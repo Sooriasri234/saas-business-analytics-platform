@@ -54,7 +54,7 @@ top1, top2 = st.columns([8, 1])
 with top2:
 
     st.session_state.dark_mode = st.toggle(
-        "🌙",
+        "Dark Mode",
         value=st.session_state.dark_mode
     )
 

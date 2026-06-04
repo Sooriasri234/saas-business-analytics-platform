@@ -7,7 +7,7 @@ st.set_page_config(layout="wide")
 load_theme()
 show_navbar()
 
-st.title("💚 Customer Health Score")
+st.title("Customer Health Score")
 st.info(
     "Evaluate overall customer engagement and health using activity metrics."
 )
@@ -43,7 +43,7 @@ last_login_days = st.number_input(
 st.markdown("---")
 
 if st.button(
-    "❤️ Calculate Health Score",
+    "Calculate Health Score",
     use_container_width=True
 ):
 
@@ -66,16 +66,16 @@ if st.button(
     st.progress(int(score))
 
     if score >= 80:
-        st.success("🟢 Healthy Customer")
+        st.success("Healthy Customer")
 
     elif score >= 60:
-        st.warning("🟡 Moderate Risk Customer")
+        st.warning("Moderate Risk Customer")
 
     else:
-        st.error("🔴 High Risk Customer")
+        st.error("High Risk Customer")
 
 # --st.markdown("---")
-st.subheader("📊 Dataset Health Analysis")
+st.subheader("Dataset Health Analysis")
 
 df = st.session_state.get("data")
 

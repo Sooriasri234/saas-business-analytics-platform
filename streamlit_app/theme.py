@@ -12,7 +12,7 @@ def load_theme():
 
         # Logout Button
         if st.button(
-            "🚪 Logout",
+            "Logout",
             use_container_width=True
         ):
 
