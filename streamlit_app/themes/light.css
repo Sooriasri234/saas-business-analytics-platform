@@ -96,3 +96,8 @@ input::placeholder,
 textarea::placeholder {
     color: #666666 !important;
 }
+
+div[data-testid="stToggle"] label {
+    color: black !important;
+    font-weight: 600 !important;
+}
