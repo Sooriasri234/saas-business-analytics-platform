@@ -97,8 +97,7 @@ textarea::placeholder {
     color: #666666 !important;
 }
 
-div[data-testid="stToggle"] p,
-div[data-testid="stToggle"] span,
+/* Theme toggle label */
 div[data-testid="stToggle"] label {
     color: black !important;
     font-weight: 600 !important;

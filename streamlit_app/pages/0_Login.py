@@ -55,13 +55,8 @@ with top1:
     st.empty()  # keeps alignment clean
 
 with top2:
-    st.markdown(
-        "<span style='color:black; font-weight:600;'>Theme</span>",
-        unsafe_allow_html=True
-    )
-
     st.session_state.dark_mode = st.toggle(
-        "",
+        "Theme",
         value=st.session_state.dark_mode
     )
 # -----------------------------------
