@@ -97,14 +97,11 @@ textarea::placeholder {
     color: #666666 !important;
 }
 
-/* Toggle text */
-div[data-testid="stToggle"] label {
+/* Toggle text in Light Mode */
+
+div[data-testid="stToggle"] label,
+div[data-testid="stToggle"] p,
+div[data-testid="stToggle"] span {
     color: black !important;
     font-weight: 600 !important;
-}
-
-/* Toggle switch */
-div[data-testid="stToggle"] {
-    visibility: visible !important;
-    opacity: 1 !important;
 }
